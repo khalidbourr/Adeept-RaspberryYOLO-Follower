@@ -1,0 +1,8 @@
+<launch>
+    <!-- Motor Node -->
+    <node name="move_node" pkg="adeept_neotic" type="ros_engine/move.py" output="screen" />
+
+    <!-- Ultrasonic Node -->
+    <node name="ultrasonic_node" pkg="adeept_neotic" type="ros_engine/ultrasonic.py" output="screen" />
+</launch>
+

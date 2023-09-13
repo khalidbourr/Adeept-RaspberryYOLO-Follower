@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="adeept_noetic" type="move.py" name="move" output="screen"/>
+  <node pkg="adeept_noetic" type="ultrasonic.py" name="ultrasonic" output="screen"/>
+  <node pkg="adeept_noetic" type="led_controller.py" name="led" output="screen"/>
+  <node pkg="adeept_noetic" type="camera.py" name="camera" output="screen"/>
+</launch>
