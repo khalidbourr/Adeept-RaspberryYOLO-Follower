@@ -10,12 +10,12 @@ The primary robot used in this implementation is the Adept AWR mobile robot.
 
 - **Operating System**: Raspbian or Ubuntu 20.04
 - **Middleware**: ROS Noetic
+- **Python version**: Python 3.9
 
 ##Features
 
 - **Real-time Human Detection**: Using the YOLOv5 model to accurately detect humans in the robot's field of view.
 - **Smooth Tracking**: The robot is capable of smoothly following a person without abrupt movements.
-- **Safety Features**: The robot can navigate without colliding into obstacles while following the detected person.
 
 ## Setup & Installation
 
@@ -25,9 +25,20 @@ The primary robot used in this implementation is the Adept AWR mobile robot.
 
 2. **Clone the Repository**:
     ```bash
-    git clone [your-repo-link]
+    git clone https://github.com/khalidbourr/Human-Following
     cd human_following
-
+3. **Install Yolo requirements**:
+    ```bash
+    cd Human-Following/src/yolov5_ros/src/yolov5/
+    pip3 install -r requirements.txt
+3. **Prepare ROS Workspace:**:
+    ```bash
+    cd Human-Following
+    rosdep update
+    rosdep install --from-paths src --ignore-src -r -y --rosdistro noetic
+3. **Build Workspace:**:
+    ```bash
+    catkin build
 
 
 ## Install ROS Noetic on Raspberry Pi (Raspbian 10 - Buster)
