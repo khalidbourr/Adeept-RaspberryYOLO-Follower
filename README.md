@@ -4,15 +4,18 @@ This repository contains an implementation of a human following algorithm, allow
 
 ## Robot
 
-The primary robot used in this implementation is the Adept AWR mobile robot.
+The primary robot used in this implementation is [Adeept AWR 4WD WiFi Smart Robot Car Kit for Raspberry Pi 4](https://www.adeept.com/adeept-awr-4wd-wifi-smart-robot-car-kit-for-raspberry-pi-3-model-b-b-2b-diy-robot-kit-for-kids-and-adults-opencv-target-tracking_p0122_s0033.html) ![Adeept AWR 4WD WiFi Smart Robot Car](https://uk.robotshop.com/cdn/shop/products/adeept-awr-4wd-wifi-smart-robot-car-kit-raspberry-pi_57849cb4-a8fa-4227-8406-9d46ef11930c_600x.jpg?v=1691709833)
 
-##Requirements
 
-- **Operating System**: Raspbian or Ubuntu 20.04
+## Requirements
+
+- **Operating System**: Raspbian or Ubuntu 20.04, tested on 32 
 - **Middleware**: ROS Noetic
 - **Python version**: Python 3.9
+- **Torch and open CV**: Compatible with ARM architecture
 
-##Features
+
+## Features
 
 - **Real-time Human Detection**: Using the YOLOv5 model to accurately detect humans in the robot's field of view.
 - **Smooth Tracking**: The robot is capable of smoothly following a person without abrupt movements.
@@ -26,17 +29,25 @@ The primary robot used in this implementation is the Adept AWR mobile robot.
 2. **Clone the Repository**:
     ```bash
     git clone https://github.com/khalidbourr/Human-Following
-    cd human_following
-3. **Install Yolo requirements**:
+    cd Human-Following
+    
+3. **Install OpenCV, Torch and Torchvision**:
+   ```bash
+    cd Human-Following
+    pip3.9 install opencv_python-4.5.1.48-cp39-cp39-linux_armv7l.whl
+    pip3.9 install torch-1.8.1-cp39-cp39-linux_armv7l.whl
+    pip3.9 install torchvision-0.9.1-cp39-cp39-linux_armv7l.whl
+    - 
+4. **Install Yolo requirements**:
     ```bash
     cd Human-Following/src/yolov5_ros/src/yolov5/
     pip3 install -r requirements.txt
-3. **Prepare ROS Workspace:**:
+5. **Prepare ROS Workspace:**:
     ```bash
     cd Human-Following
     rosdep update
     rosdep install --from-paths src --ignore-src -r -y --rosdistro noetic
-3. **Build Workspace:**:
+6. **Build Workspace:**:
     ```bash
     catkin build
 
