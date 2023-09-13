@@ -41,6 +41,53 @@ The primary robot used in this implementation is the Adept AWR mobile robot.
     catkin build
 
 
+## Distributed Architecture Overview
+
+To optimize performance, especially when it comes to processing-intensive tasks like object detection using YOLOv5, this project utilizes a distributed architecture. This approach divides the computational responsibilities between the Raspberry Pi and an external laptop. Here's why and how it's set up:
+
+### Why Use a Distributed Architecture?
+
+- **Performance Constraints of Raspberry Pi**: The Raspberry Pi, even in its latest models like the one we're using, is not equipped with a dedicated GPU. This limitation makes the object detection task using neural networks like YOLO quite slow and potentially impractical for real-time applications on the robot.
+  
+- **Leveraging External Computing Power**: By offloading the heavy computational task of object detection to a more powerful laptop equipped with a GPU, we achieve faster detection times. This way, the robot can react in real-time while following a human.
+
+### How It Works:
+
+1. **Prepare Three Terminals with Raspberry Pi Connection**:
+    In each terminal:
+    ```bash
+    ssh -X Pi@[IP_of_your_robot]
+    export ROS_MASTER_URI=http://[robot_IP]:11311
+    export ROS_IP=[robot_IP]
+    
+2. **Prepare the Fourth Terminal (Without Raspberry Connection)**:
+    ```bash
+    export ROS_MASTER_URI=http://[robot_IP]:11311
+    export ROS_IP=[laptop_IP]
+#### Execution:
+ 
+1. **Start the ROS Master (First Terminal)**:
+    ```bash
+    roscore
+2. **Launch the Robot's Essential Components (Second Terminal)**:
+    ```bash
+    cd Human-Following/
+    source devel/setup.bash
+    roslaunch adeept_noetic system.launch
+    
+3. **Run YOLOv5 on the External Laptop (Fourth Terminal)**:
+    ```bash
+    cd [path_to_yolo_installation]
+    source devel/setup.bash
+    roslaunch yolov5_ros yolov5.launch input_image_topic:=/img
+4. **Execute the Human Following Script (Third Terminal)**:
+    ```bash
+    cd Human-Following/
+    source devel/setup.bash
+    rosrun object_follower object_follower.py
+
+
+
 ## Install ROS Noetic on Raspberry Pi (Raspbian 10 - Buster)
 
 ```bash
