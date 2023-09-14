@@ -2,6 +2,9 @@
 
 This repository contains an implementation of a human following algorithm, allowing a robot to accurately track and follow a person. The algorithm leverages the power of the YOLOv5 object detection model.
 
+![Scenario](https://github.com/khalidbourr/Adeept-RaspberryYOLO-Follower/blob/main/output.gif)
+
+
 ## Robot
 
 The primary robot used in this implementation is [Adeept AWR 4WD WiFi Smart Robot Car Kit for Raspberry Pi 4](https://www.adeept.com/adeept-awr-4wd-wifi-smart-robot-car-kit-for-raspberry-pi-3-model-b-b-2b-diy-robot-kit-for-kids-and-adults-opencv-target-tracking_p0122_s0033.html) ![Adeept AWR 4WD WiFi Smart Robot Car](https://uk.robotshop.com/cdn/shop/products/adeept-awr-4wd-wifi-smart-robot-car-kit-raspberry-pi_57849cb4-a8fa-4227-8406-9d46ef11930c_600x.jpg?v=1691709833)
